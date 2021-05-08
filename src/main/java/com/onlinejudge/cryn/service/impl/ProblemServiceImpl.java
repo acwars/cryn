@@ -204,7 +204,7 @@ public class ProblemServiceImpl implements ProblemService {
             //构建推荐器，基于用户的协同过滤推荐
             Recommender recommender = new GenericUserBasedRecommender(dataModel, userNeighborhood, similarity);
             long start = System.currentTimeMillis();
-            //推荐商品
+            //推荐题目
             List<RecommendedItem> recommendedItemList = recommender.recommend(userId, row);
             List<Long> ProblemIds = new ArrayList<Long>();
             for (RecommendedItem recommendedItem : recommendedItemList) {
