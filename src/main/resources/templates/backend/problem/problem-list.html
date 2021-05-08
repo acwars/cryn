@@ -103,10 +103,10 @@ z-index: 999999">
                                         </td>
                                         <td class="text-center">{{problem.tags}}</td>
                                         <td class="text-center">
-                                            <span v-if="problem.level == 1">简单</span>
-                                            <span v-if="problem.level == 2">中等</span>
-                                            <span v-if="problem.level == 3">困难</span>
-                                            <span v-if="problem.level == 4">专家</span>
+                                            <span v-if="problem.rating == 1">简单</span>
+                                            <span v-if="problem.rating == 2">中等</span>
+                                            <span v-if="problem.rating == 3">困难</span>
+                                            <span v-if="problem.rating == 4">专家</span>
                                         </td>
                                         <td class="text-center">{{problem.submitCount}}</td>
                                         <td class="text-center">{{problem.acCount}}</td>
@@ -163,7 +163,7 @@ z-index: 999999">
         data: {
             total: 0,
             pageNum: 1,
-            problem: {"sex": "男", "avatar": "http://file.gkuoj.com/image/default_avatar.jpg", "roleIds": "2"},
+            problem: {"sex": "男", "avatar": "http://file.cryn.com/image/default_avatar.jpg", "roleIds": "2"},
             problemList: [],
             roleList: []
         },

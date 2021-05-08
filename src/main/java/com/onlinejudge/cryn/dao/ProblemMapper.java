@@ -21,17 +21,20 @@ public interface ProblemMapper {
     int updateByPrimaryKey(Problem record);
 
     /**
-     * 根据题目Id 随机返回推荐题目
-     * @param problemId
+     * 推荐题目
+     * @param userId
      * @param row
      * @return
      */
-    List<ProblemDetailVO> listSuggestProblem(@Param("problemId") Integer problemId, @Param("row") int row);
+    List<ProblemDetailVO> listSuggestProblem(Integer userId, @Param("row") int row);
+
+    List<ProblemDetailVO> findAllByProblemIds(@Param("ProblemIds") List<Long> ProblemIds);
+
 
     Integer countRandomProblemId();
 
     List<ProblemVO> listAll2VO(@Param("flag")Integer flag,@Param("sort") Integer sort, @Param("keyword") String keyword,
-                               @Param("level") Integer level, @Param("tagIdsList") List<Integer> tagIdsList);
+                               @Param("rating") Integer rating, @Param("tagIdsList") List<Integer> tagIdsList);
 
 
     ProblemDetailVO getDetailVOById(Integer problemId);

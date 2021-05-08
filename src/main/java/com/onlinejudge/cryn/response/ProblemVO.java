@@ -13,7 +13,7 @@ public class ProblemVO implements Serializable{
 
     private String tags;
 
-    private Integer level;
+    private Integer rating;
 
     private Integer submitCount;
 
@@ -32,11 +32,11 @@ public class ProblemVO implements Serializable{
      */
     private Integer userStatus;
 
-    public ProblemVO(Integer id, String name, String tags, Integer level, Integer submitCount, Integer acCount, Integer waCount, Integer flag, Date createTime, Date updateTime, Integer userStatus) {
+    public ProblemVO(Integer id, String name, String tags, Integer rating, Integer submitCount, Integer acCount, Integer waCount, Integer flag, Date createTime, Date updateTime, Integer userStatus) {
         this.id = id;
         this.name = name;
         this.tags = tags;
-        this.level = level;
+        this.rating = rating;
         this.submitCount = submitCount;
         this.acCount = acCount;
         this.waCount = waCount;
@@ -74,12 +74,12 @@ public class ProblemVO implements Serializable{
         this.tags = tags == null ? null : tags.trim();
     }
 
-    public Integer getLevel() {
-        return level;
+    public Integer getRating() {
+        return rating;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
+    public void setRating(Integer rating) {
+        this.rating = rating;
     }
 
     public Integer getSubmitCount() {
@@ -149,7 +149,7 @@ public class ProblemVO implements Serializable{
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", tags='" + tags + '\'' +
-                ", level=" + level +
+                ", rating=" + rating +
                 ", submitCount=" + submitCount +
                 ", acCount=" + acCount +
                 ", waCount=" + waCount +

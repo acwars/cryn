@@ -16,6 +16,8 @@ public class ProblemResult implements Serializable {
     @NotNull
     private Integer problemId;
 
+    private Integer problemRating;
+
     private Integer compId;
 
     private Integer compScore;
@@ -40,11 +42,13 @@ public class ProblemResult implements Serializable {
 
     private Date updateTime;
 
-    public ProblemResult(Integer id, Integer userId, Integer problemId, Integer compId, String runNum, Integer status, String type, Long time, Long memory, String errorMsg, String sourceCode, Date createTime, Date updateTime,Integer compScore) {
+    public ProblemResult(Integer id, Integer userId, Integer problemId, Integer problemRating, Integer compId, Integer compScore, String runNum, Integer status, String type, Long time, Long memory, String errorMsg, String sourceCode, Date createTime, Date updateTime) {
         this.id = id;
         this.userId = userId;
         this.problemId = problemId;
+        this.problemRating = problemRating;
         this.compId = compId;
+        this.compScore = compScore;
         this.runNum = runNum;
         this.status = status;
         this.type = type;
@@ -52,7 +56,6 @@ public class ProblemResult implements Serializable {
         this.memory = memory;
         this.errorMsg = errorMsg;
         this.sourceCode = sourceCode;
-        this.compScore = compScore;
         this.createTime = createTime;
         this.updateTime = updateTime;
     }
@@ -83,6 +86,14 @@ public class ProblemResult implements Serializable {
 
     public void setProblemId(Integer problemId) {
         this.problemId = problemId;
+    }
+
+    public Integer getProblemRating() {
+        return problemRating;
+    }
+
+    public void setProblemRating(Integer problemRating) {
+        this.problemRating = problemRating;
     }
 
     public Integer getCompId() {
@@ -183,6 +194,7 @@ public class ProblemResult implements Serializable {
                 "id=" + id +
                 ", userId=" + userId +
                 ", problemId=" + problemId +
+                ", problemRating=" + problemRating +
                 ", compId=" + compId +
                 ", compScore=" + compScore +
                 ", runNum='" + runNum + '\'' +

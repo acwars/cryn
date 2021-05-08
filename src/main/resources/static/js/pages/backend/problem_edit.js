@@ -12,7 +12,7 @@ function saveProblem() {
     var outputDesc = $("#outputDesc").val();
     var testcaseInput = $("#testcaseInput").val();
     var testcaseOutput = $("#testcaseOutput").val();
-    var level = $("input[name='level']:checked").val();
+    var rating = $("input[name='rating']:checked").val();
     var tagsItem = $("#tags").val();
     if (!name) {
         $.message({
@@ -61,7 +61,7 @@ function saveProblem() {
         return;
     }
 
-    if (!level) {
+    if (!rating) {
         $.message({
             message: "难度不能为空",
             type: "warning"
@@ -104,7 +104,7 @@ function saveProblem() {
                 "content": content, "htmlContent": htmlContent,
                 "name": name, "inputDesc":inputDesc ,"outputDesc":outputDesc,
                 "testcaseInput": testcaseInput, "testcaseOutput":testcaseOutput,
-                "level": level, "tags": tags,
+                "rating": rating, "tags": tags,
                 "testcaseList":wrap.testcaseList
             }),
             dataType: "json",

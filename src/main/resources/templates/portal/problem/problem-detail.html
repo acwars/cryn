@@ -5,7 +5,7 @@
 <head>
     <title>题目-[[${problem.name}]]</title>
     <div th:replace="~{fragments/head-base}"></div>
-    <!--Page level styles-->
+    <!--Page rating styles-->
     <link type="text/css" rel="stylesheet" th:href="@{/plugins/modal/css/component.css}"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/pages/problem_detail.css}"/>
 
@@ -89,10 +89,10 @@ z-index: 999999">
                                     </span>
                                     <span class=" btn-danger loading btn-sm ml-1">
                                         难度:
-                                        <span th:if="${problem.level == 1}">简单</span>
-                                        <span th:if="${problem.level == 2}">中等</span>
-                                        <span th:if="${problem.level == 3}">困难</span>
-                                        <span th:if="${problem.level == 4}">专家</span>
+                                        <span th:if="${problem.rating == 1}">简单</span>
+                                        <span th:if="${problem.rating == 2}">中等</span>
+                                        <span th:if="${problem.rating == 3}">困难</span>
+                                        <span th:if="${problem.rating == 4}">专家</span>
                                     </span>
                                 </div>
                                 <div class="mt-5">
@@ -193,7 +193,7 @@ z-index: 999999">
                                             <span class="float-right">
                                                    {{problem.tags}}
                                             </span>
-                                            <!--<span class="float-right text-muted progress-danger">难度{{problem.level}}</span>-->
+                                            <!--<span class="float-right text-muted progress-danger">难度{{problem.rating}}</span>-->
                                         </div>
                                     </div>
                                     <div class="task-item">

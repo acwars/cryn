@@ -24,7 +24,7 @@ public class ProblemRequest {
 
     private String testcaseOutput;
 
-    private Integer level;
+    private Integer rating;
 
     private Long time;
 

@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Value("${spring.mail.username}")
     private String mailUsername;
 
-    private final String DEFAULT_PASSWORD = "gkuoj";
+    private final String DEFAULT_PASSWORD = "cryn";
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;

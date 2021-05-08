@@ -18,9 +18,9 @@ public interface ProblemService {
 
     RestResponseVO<Problem> updateById(ProblemRequest problemRequest);
 
-    RestResponseVO<PageInfo> listProblemVOToPage(Integer userId,Integer flag,Integer sort,String keyword, Integer level, String tagIds, Integer pageNum, Integer pageSize);
+    RestResponseVO<PageInfo> listProblemVOToPage(Integer userId,Integer flag,Integer sort,String keyword, Integer rating, String tagIds, Integer pageNum, Integer pageSize);
 
-    RestResponseVO<List<ProblemDetailVO>> listSuggestProblem(Integer problemId, Integer row);
+    RestResponseVO<List<ProblemDetailVO>> listSuggestProblem(Integer userId, Integer row);
 
     RestResponseVO<Integer> randomProblemId();
 

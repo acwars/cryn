@@ -125,7 +125,7 @@
 
   <select id="listVOByCompetitionId" resultType="com.onlinejudge.cryn.response.CompetitionProblemVO" parameterType="int">
      select cp.id, cp.comp_id, cp.score,cp.submit_count,cp.ac_count, cp.problem_id, cp.create_time, cp.update_time,
-     p.name problem_name,p.level
+     p.name problem_name,p.rating
      from competition_problem cp
      join problem p on p.id = cp.problem_id
      where cp.comp_id = #{competitionId}

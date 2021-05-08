@@ -60,7 +60,7 @@ public class ProblemController {
      * @param pageSize
      * @param sort
      * @param keyword
-     * @param level
+     * @param rating
      * @param tagIds
      * @return
      */
@@ -71,7 +71,7 @@ public class ProblemController {
                                                      @RequestParam(defaultValue = "20") Integer pageSize,
                                                      @RequestParam(defaultValue = "-1", required = false) Integer sort,
                                                      @RequestParam(defaultValue = "", required = false) String keyword,
-                                                     @RequestParam(defaultValue = "-1", required = false) Integer level,
+                                                     @RequestParam(defaultValue = "-1", required = false) Integer rating,
                                                      @RequestParam(defaultValue = "",required = false) String tagIds) {
         Integer userId = null;
         if (userDetails != null) {
@@ -79,7 +79,7 @@ public class ProblemController {
         }
         //公开的题目
         Integer flag = 0;
-        return problemService.listProblemVOToPage(userId,flag, sort, keyword, level, tagIds, pageNum, pageSize);
+        return problemService.listProblemVOToPage(userId,flag, sort, keyword, rating, tagIds, pageNum, pageSize);
     }
 
 
@@ -104,15 +104,19 @@ public class ProblemController {
     }
 
     /**
-     * 随机返回5道推荐题目
+     * 推荐题目
      *
-     * @param problemId
+     * @param userDetails
      * @return
      */
     @RequestMapping("/suggestProblemList")
     @ResponseBody
-    public RestResponseVO<List<ProblemDetailVO>> suggestProblemList(Integer problemId) {
-        return problemService.listSuggestProblem(problemId, SUGGEST_PROBLEM_ROW);
+    public RestResponseVO<List<ProblemDetailVO>> suggestProblemList(@AuthenticationPrincipal UserDetails userDetails) {
+        Integer userId = null;
+        if (userDetails != null) {
+            userId = ((User) userDetails).getId();
+        }
+        return problemService.listSuggestProblem(userId, SUGGEST_PROBLEM_ROW);
     }
 
     /**

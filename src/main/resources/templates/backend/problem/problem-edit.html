@@ -3,9 +3,9 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <title>题目设置</title>
+    <title>题目添加</title>
     <div th:replace="~{fragments/backend/head-base}"></div>
-    <!--Page level styles-->
+    <!--Page rating styles-->
     <link type="text/css" rel="stylesheet" th:href="@{/plugins/switchery/css/switchery.min.css}"/>
     <!--heard script-->
 </head>
@@ -43,7 +43,7 @@ z-index: 999999">
                     <div class="row no-gutters">
                         <div class="col-6">
                             <h4 class="nav_top_align">
-                                <i class="fa fa-book mr-1"></i>题目设置
+                                <i class="fa fa-book mr-1"></i>题目添加
                             </h4>
                         </div>
                     </div>
@@ -153,25 +153,25 @@ z-index: 999999">
                                             </div>
                                             <div class="col-6 mt-3">
                                                 <label class="custom-control custom-radio">
-                                                    <input name="level" type="radio" value="1"
+                                                    <input name="rating" type="radio" value="1"
                                                            class="custom-control-input" checked="checked">
                                                     <span class="custom-control-indicator"></span>
                                                     <span class="custom-control-description">简单</span>
                                                 </label>
                                                 <label class=" custom-control custom-radio">
-                                                    <input name="level" type="radio" value="2"
+                                                    <input name="rating" type="radio" value="2"
                                                            class="custom-control-input">
                                                     <span class="custom-control-indicator"></span>
                                                     <span class="custom-control-description">中等</span>
                                                 </label>
                                                 <label class=" custom-control custom-radio">
-                                                    <input name="level" type="radio" value="3"
+                                                    <input name="rating" type="radio" value="3"
                                                            class="custom-control-input">
                                                     <span class="custom-control-indicator"></span>
                                                     <span class="custom-control-description">困难</span>
                                                 </label>
                                                 <label class=" custom-control custom-radio">
-                                                    <input name="level" type="radio" value="4"
+                                                    <input name="rating" type="radio" value="4"
                                                            class="custom-control-input">
                                                     <span class="custom-control-indicator"></span>
                                                     <span class="custom-control-description">专家</span>

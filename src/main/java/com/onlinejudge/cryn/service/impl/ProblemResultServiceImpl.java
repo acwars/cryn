@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.onlinejudge.cryn.common.JudgeStatusEnum;
 import com.onlinejudge.cryn.common.RestResponseEnum;
 import com.onlinejudge.cryn.common.StringConst;
+import com.onlinejudge.cryn.dao.ProblemMapper;
 import com.onlinejudge.cryn.dao.ProblemResultMapper;
 import com.onlinejudge.cryn.dao.TestcaseResultMapper;
 import com.onlinejudge.cryn.entity.ProblemResult;
@@ -22,6 +23,9 @@ import java.util.List;
 public class ProblemResultServiceImpl implements ProblemResultService {
     @Autowired
     private ProblemResultMapper problemResultMapper;
+
+    @Autowired
+    private ProblemMapper problemMapper;
 
     @Autowired
     private TestcaseResultMapper testcaseResultMapper;
@@ -55,8 +59,11 @@ public class ProblemResultServiceImpl implements ProblemResultService {
         if (problemResult == null) {
             return RestResponseVO.createByErrorEnum(RestResponseEnum.INVALID_REQUEST);
         }
+        ProblemDetailVO problem = problemMapper.getDetailVOById(problemResult.getProblemId());
+        problemResult.setProblemRating(problem.getRating());
         int effect = problemResultMapper.insertSelective(problemResult);
-        return effect > 0 ? RestResponseVO.createBySuccessMessage(StringConst.DEL_SUCCESS)
+        int effect2 = problemResultMapper.insert2RecommendsProblemsData(problemResult);
+        return (effect > 0 && effect2 > 0) ? RestResponseVO.createBySuccessMessage(StringConst.DEL_SUCCESS)
                 : RestResponseVO.createByErrorMessage(StringConst.DEL_FAIL);
     }
 

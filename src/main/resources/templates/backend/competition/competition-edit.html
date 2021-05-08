@@ -5,7 +5,7 @@
 <head>
     <title>比赛设置</title>
     <div th:replace="~{fragments/backend/head-base}"></div>
-    <!--Page level styles-->
+    <!--Page rating styles-->
     <link type="text/css" rel="stylesheet" th:href="@{/css/tagsinput.css}"/>
     <link type="text/css" rel="stylesheet" th:href="@{/plugins/switchery/css/switchery.min.css}"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/highlight.min.css}"/>
@@ -242,16 +242,16 @@ z-index: 999999">
                                                                         <td class="text-center">{{competitionProblem.score}}</td>
 
                                                                         <td class="text-center">
-                                                                            <span v-if="competitionProblem.level == 1">
+                                                                            <span v-if="competitionProblem.rating == 1">
                                                                                 <span class=" btn-success btn-sm purple">简单</span>
                                                                             </span>
-                                                                                                        <span v-if="competitionProblem.level == 2">
+                                                                                                        <span v-if="competitionProblem.rating == 2">
                                                                                 <span class=" btn-primary btn-sm purple">中等</span>
                                                                             </span>
-                                                                                                        <span v-if="competitionProblem.level == 3">
+                                                                                                        <span v-if="competitionProblem.rating == 3">
                                                                                 <span class=" btn-warning btn-sm purple">困难</span>
                                                                             </span>
-                                                                                                        <span v-if="competitionProblem.level == 4">
+                                                                                                        <span v-if="competitionProblem.rating == 4">
                                                                                 <span class=" btn-danger btn-sm purple">专家</span>
                                                                             </span>
                                                                         </td>
@@ -333,16 +333,16 @@ z-index: 999999">
                                         <span v-if="problem.submitCount == 0">0.00%</span>
                                     </td>
                                     <td class="text-center">
-                                                <span v-if="problem.level == 1">
+                                                <span v-if="problem.rating == 1">
                                                     <span class=" btn-success btn-sm purple">简单</span>
                                                 </span>
-                                        <span v-if="problem.level == 2">
+                                        <span v-if="problem.rating == 2">
                                                     <span class=" btn-primary btn-sm purple">中等</span>
                                                 </span>
-                                        <span v-if="problem.level == 3">
+                                        <span v-if="problem.rating == 3">
                                                     <span class=" btn-warning btn-sm purple">困难</span>
                                                 </span>
-                                        <span v-if="problem.level == 4">
+                                        <span v-if="problem.rating == 4">
                                                     <span class=" btn-danger btn-sm purple">专家</span>
                                                 </span>
                                     </td>

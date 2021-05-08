@@ -24,9 +24,25 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.mahout.cf.taste.impl.neighborhood.ThresholdUserNeighborhood;
+import org.apache.mahout.cf.taste.impl.similarity.UncenteredCosineSimilarity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import org.apache.mahout.cf.taste.common.TasteException;
+import org.apache.mahout.cf.taste.impl.model.jdbc.MySQLJDBCDataModel;
+import org.apache.mahout.cf.taste.impl.neighborhood.NearestNUserNeighborhood;
+import org.apache.mahout.cf.taste.impl.recommender.GenericItemBasedRecommender;
+import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
+import org.apache.mahout.cf.taste.impl.similarity.PearsonCorrelationSimilarity;
+import org.apache.mahout.cf.taste.model.DataModel;
+import org.apache.mahout.cf.taste.model.JDBCDataModel;
+import org.apache.mahout.cf.taste.neighborhood.UserNeighborhood;
+import org.apache.mahout.cf.taste.recommender.RecommendedItem;
+import org.apache.mahout.cf.taste.recommender.Recommender;
+import org.apache.mahout.cf.taste.similarity.ItemSimilarity;
+import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +65,8 @@ public class ProblemServiceImpl implements ProblemService {
     @Autowired
     private ProblemTagMapper problemTagMapper;
 
+    @Autowired
+    private DataModel dataModel;
 
     private final Long defaultTime = 1000L;
 
@@ -140,7 +158,7 @@ public class ProblemServiceImpl implements ProblemService {
 
 
     @Override
-    public RestResponseVO<PageInfo> listProblemVOToPage(Integer userId,Integer flag,Integer sort, String keyword, Integer level, String tagIds, Integer pageNum, Integer pageSize) {
+    public RestResponseVO<PageInfo> listProblemVOToPage(Integer userId,Integer flag,Integer sort, String keyword, Integer rating, String tagIds, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize, true);
         List<Integer> tagIdsList = null;
         if (StringUtils.isNoneBlank(tagIds)) {
@@ -150,7 +168,7 @@ public class ProblemServiceImpl implements ProblemService {
             }
         }
 
-        List<ProblemVO> problemList = problemMapper.listAll2VO(flag,sort, keyword, level, tagIdsList);
+        List<ProblemVO> problemList = problemMapper.listAll2VO(flag,sort, keyword, rating, tagIdsList);
         if (userId != null) {
             for (ProblemVO problemVO : problemList) {
                 int totalCount = problemResultMapper.countUserIdProblemId(userId, problemVO.getId());
@@ -169,11 +187,43 @@ public class ProblemServiceImpl implements ProblemService {
     }
 
     @Override
-    public RestResponseVO<List<ProblemDetailVO>> listSuggestProblem(Integer problemId, Integer row) {
-        if (problemId == null) {
+    public RestResponseVO<List<ProblemDetailVO>> listSuggestProblem(Integer userId, Integer row) {
+        if (userId == null) {
             return RestResponseVO.createByErrorEnum(RestResponseEnum.INVALID_REQUEST);
         }
-        List<ProblemDetailVO> problemList = problemMapper.listSuggestProblem(problemId, row);
+
+        List<ProblemDetailVO> problemList = null;
+        try {
+            //计算相似度，相似度算法有很多种，采用基于余弦相似度
+            UserSimilarity similarity = new UncenteredCosineSimilarity(dataModel);
+            //计算最近邻域，邻居有两种算法，基于固定数量的邻居和基于相似度的邻居，这里使用基于相似度的邻居
+            //ThresholdUserNeighborhood 对每个用户基于一定的限制，相似度限制内的所有用户为邻居
+
+            double threshold = 0.0;
+            UserNeighborhood userNeighborhood = new ThresholdUserNeighborhood(threshold, similarity, dataModel);
+            //构建推荐器，基于用户的协同过滤推荐
+            Recommender recommender = new GenericUserBasedRecommender(dataModel, userNeighborhood, similarity);
+            long start = System.currentTimeMillis();
+            //推荐商品
+            List<RecommendedItem> recommendedItemList = recommender.recommend(userId, row);
+            List<Long> ProblemIds = new ArrayList<Long>();
+            for (RecommendedItem recommendedItem : recommendedItemList) {
+                System.out.println(recommendedItem);
+                ProblemIds.add(recommendedItem.getItemID());
+            }
+            System.out.println("推荐出来的题目id集合"+ProblemIds);
+
+            //根据题目id查询题目
+            if(ProblemIds!=null &&ProblemIds.size()>0) {
+                problemList = problemMapper.findAllByProblemIds(ProblemIds);
+            }else{
+                problemList = new ArrayList<>();
+            }
+            System.out.println("推荐数量:"+problemList.size() +"耗时："+(System.currentTimeMillis()-start));
+        } catch (TasteException e) {
+            e.printStackTrace();
+        }
+
         return RestResponseVO.createBySuccess(problemList);
     }
 

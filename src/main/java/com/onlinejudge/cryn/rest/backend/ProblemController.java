@@ -72,11 +72,11 @@ public class ProblemController {
     @ResponseBody
     public RestResponseVO<PageInfo> listProblem(@RequestParam(defaultValue = "-1") Integer sort,
                                                 @RequestParam(defaultValue = "") String keyword,
-                                                @RequestParam(defaultValue = "-1") Integer level,
+                                                @RequestParam(defaultValue = "-1") Integer rating,
                                                 @RequestParam(defaultValue = "") String tagIds,
                                                 @RequestParam(defaultValue = "1") Integer pageNum,
                                                 @RequestParam(defaultValue = "15")Integer pageSize){
-        return problemService.listProblemVOToPage(null,null,sort,keyword,level,tagIds,pageNum,pageSize);
+        return problemService.listProblemVOToPage(null,null,sort,keyword,rating,tagIds,pageNum,pageSize);
     }
 
 

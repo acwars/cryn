@@ -5,7 +5,7 @@
 <head>
     <title>题库</title>
     <div th:replace="~{fragments/head-base}"></div>
-    <!--Page level styles-->
+    <!--Page rating styles-->
     <!--heard script-->
     <style type="text/css">
 
@@ -76,8 +76,8 @@ z-index: 999999">
                                     <div class="col-4">
                                         <div class="float-right">
                                             <div class="float-right ml-3">
-                                                <select id="level" name="level" onchange="clickPage(1)"
-                                                        class="select2-level"
+                                                <select id="rating" name="rating" onchange="clickPage(1)"
+                                                        class="select2-rating"
                                                         style="width: 100px;">
                                                     <option value="-1">不限</option>
                                                     <option value="1">简单</option>
@@ -162,16 +162,16 @@ z-index: 999999">
                                                 </td>
                                                 <td class="text-center">{{problem.createTime | formatYear}}</td>
                                                 <td class="text-center">
-                                                <span v-if="problem.level == 1">
+                                                <span v-if="problem.rating == 1">
                                                     <span class=" btn-success btn-sm purple">简单</span>
                                                 </span>
-                                                    <span v-if="problem.level == 2">
+                                                    <span v-if="problem.rating == 2">
                                                     <span class=" btn-primary btn-sm purple">中等</span>
                                                 </span>
-                                                    <span v-if="problem.level == 3">
+                                                    <span v-if="problem.rating == 3">
                                                     <span class=" btn-warning btn-sm purple">困难</span>
                                                 </span>
-                                                    <span v-if="problem.level == 4">
+                                                    <span v-if="problem.rating == 4">
                                                     <span class=" btn-danger btn-sm purple">专家</span>
                                                 </span>
                                                 </td>
@@ -319,7 +319,7 @@ z-index: 999999">
         methods: {
             listProblem: function (pageNum) {
                 var keyword = $("#keyword").val();
-                var level = $('#level').val();
+                var rating = $('#rating').val();
                 var sort = $('#sort').val();
                 var url = 'problem/listProblem2Page';
                 var tagIds = "";
@@ -331,7 +331,7 @@ z-index: 999999">
                     "tagIds": tagIds,
                     "keyword": keyword,
                     "sort": sort,
-                    "level": level
+                    "rating": rating
                 }, {emulateJSON: true}).then(function (res) {
                     this.total = res.data.data.total;
                     this.problemList = res.data.data.list;
@@ -406,7 +406,7 @@ z-index: 999999">
         placeholder: '排序',
         theme: 'bootstrap4'
     });
-    $('.select2-level').select2({
+    $('.select2-rating').select2({
         placeholder: '难度',
         theme: 'bootstrap4'
     });

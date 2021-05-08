@@ -13,6 +13,8 @@ public interface ProblemResultMapper {
 
     int insertSelective(ProblemResult record);
 
+    int insert2RecommendsProblemsData(ProblemResult record);
+
     ProblemResult selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(ProblemResult record);
