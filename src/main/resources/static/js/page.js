@@ -1,6 +1,3 @@
-/**
- * Created by zxm on 2017/3/31.
- */
 $.fn.extend({
     "initPage":function(listCount,currentPage,fun){
         var maxshowpageitem = $(this).attr("maxshowpageitem");

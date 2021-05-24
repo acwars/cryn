@@ -136,11 +136,11 @@ public class Problem implements Serializable {
         this.testcaseOutput = testcaseOutput == null ? null : testcaseOutput.trim();
     }
 
-    public Integer getrating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setrating(Integer rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 

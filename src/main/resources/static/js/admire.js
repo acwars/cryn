@@ -482,7 +482,7 @@ $(document).ready(function () {
 
     function card_refresh(card){
         if(!card.hasClass("card-refreshing")){
-            card.append('<div class="card_refresh_section"><img src="img/loader.gif"/></div>');
+            card.append('<div class="card_refresh_section"><img src="img/loading.gif"/></div>');
             card.find(".card_refresh_section").width(card.width()).height(card.height());
             card.addClass("card-refreshing");
 

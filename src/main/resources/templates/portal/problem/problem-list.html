@@ -31,7 +31,7 @@
   top: 48%;
   background-position: center;
 z-index: 999999">
-        <img th:src="@{/img/loader.gif}" style=" width: 50px;" alt="loading...">
+        <img th:src="@{/img/loading.gif}" style=" width: 50px;" alt="loading...">
     </div>
 </div>
 <div id="wrap">
@@ -162,18 +162,7 @@ z-index: 999999">
                                                 </td>
                                                 <td class="text-center">{{problem.createTime | formatYear}}</td>
                                                 <td class="text-center">
-                                                <span v-if="problem.rating == 1">
-                                                    <span class=" btn-success btn-sm purple">简单</span>
-                                                </span>
-                                                    <span v-if="problem.rating == 2">
-                                                    <span class=" btn-primary btn-sm purple">中等</span>
-                                                </span>
-                                                    <span v-if="problem.rating == 3">
-                                                    <span class=" btn-warning btn-sm purple">困难</span>
-                                                </span>
-                                                    <span v-if="problem.rating == 4">
-                                                    <span class=" btn-danger btn-sm purple">专家</span>
-                                                </span>
+                                                    <span>{{problem.rating}}</span>
                                                 </td>
                                             </tr>
                                             </tbody>

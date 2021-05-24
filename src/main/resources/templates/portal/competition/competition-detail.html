@@ -28,7 +28,7 @@
   top: 48%;
   background-position: center;
 z-index: 999999">
-        <img th:src="@{/img/loader.gif}" style=" width: 50px;" alt="loading...">
+        <img th:src="@{/img/loading.gif}" style=" width: 50px;" alt="loading...">
     </div>
 </div>
 <div id="wrap">
@@ -79,7 +79,7 @@ z-index: 999999">
                                     <p><span id="registerCount">[[${competitionDetail.registerCount}]]</span> 人已经报名</p>
                                     <div class="mt-3">
                                         <div th:if="${competitionDetail.secret}">类型：私密赛</div>
-                                        <div th:if="!${competitionDetail.secret}">类型：公开赛</div>
+                                        <div th:if="${not competitionDetail.secret}">类型：公开赛</div>
                                         <div>举办者：<a target="_blank"
                                                     th:href="@{'/user/mainPage?userId='+${competitionDetail.userId}}"
                                                     class="text-primary">[[${competitionDetail.name}]]</a></div>

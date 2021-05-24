@@ -2,10 +2,7 @@ package com.onlinejudge.cryn.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.onlinejudge.cryn.common.CommonConst;
-import com.onlinejudge.cryn.common.JudgeStatusEnum;
-import com.onlinejudge.cryn.common.RestResponseEnum;
-import com.onlinejudge.cryn.common.StringConst;
+import com.onlinejudge.cryn.common.*;
 import com.onlinejudge.cryn.dao.ProblemMapper;
 import com.onlinejudge.cryn.dao.ProblemResultMapper;
 import com.onlinejudge.cryn.dao.ProblemTagMapper;
@@ -112,6 +109,7 @@ public class ProblemServiceImpl implements ProblemService {
             return RestResponseVO.createByErrorEnum(RestResponseEnum.INVALID_REQUEST);
         }
         Problem problem = new Problem();
+        problem.setRating(0);
         BeanUtil.copyPropertiesIgnoreNull(problemRequest,problem);
         int effect = problemMapper.insertSelective(problem);
         if (effect > 0) {
@@ -195,10 +193,9 @@ public class ProblemServiceImpl implements ProblemService {
         List<ProblemDetailVO> problemList = null;
         try {
             //计算相似度，相似度算法有很多种，采用基于余弦相似度
-            UserSimilarity similarity = new UncenteredCosineSimilarity(dataModel);
+            UserSimilarity similarity = new AdjustedCosineSimilarity(dataModel);
             //计算最近邻域，邻居有两种算法，基于固定数量的邻居和基于相似度的邻居，这里使用基于相似度的邻居
             //ThresholdUserNeighborhood 对每个用户基于一定的限制，相似度限制内的所有用户为邻居
-
             double threshold = 0.0;
             UserNeighborhood userNeighborhood = new ThresholdUserNeighborhood(threshold, similarity, dataModel);
             //构建推荐器，基于用户的协同过滤推荐

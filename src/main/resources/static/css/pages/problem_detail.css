@@ -1,4 +1,31 @@
 #editor{
 	height: 600px;
+}
 
+.pre_2GaNN {
+	word-break: initial;
+	hyphens: none;
+	position: relative;
+	overflow: visible;
+	display: block;
+}
+.rendered-markdown pre {
+	padding: 6px 12px;
+	color: hsl(0, 0%, 97%);
+	border: 1px solid hsl(0, 0%, 91%);
+	background: hsl(0, 0%, 97%);
+	border-radius: 3px;
+}
+
+pre {
+	font-size: 87.5%;
+	color: #212529;
+}
+
+.rendered-markdown pre code {
+	background: none;
+	border: none;
+	color: hsl(0, 0%, 25%);
+	padding: 0;
+	margin: 0;
 }

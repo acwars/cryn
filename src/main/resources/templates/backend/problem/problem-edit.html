@@ -28,7 +28,7 @@
   top: 48%;
   background-position: center;
 z-index: 999999">
-        <img th:src="@{/img/loader.gif}" style=" width: 50px;" alt="loading...">
+        <img th:src="@{/img/loading.gif}" style=" width: 50px;" alt="loading...">
     </div>
 </div>
 <div id="wrap">
@@ -96,13 +96,13 @@ z-index: 999999">
 
                                         <div class="row mt-3">
                                             <div class="col-12">
-                                                <span class=""><span class="text-danger">*</span>输入规范</span>
+                                                <span class=""><span class="text-danger">*</span>输入格式</span>
                                             </div>
                                             <div class="col-12 mt-3">
                                                 <textarea class="form-control" id="inputDesc" style="height: 200px">[[${problem.inputDesc}]]</textarea>
                                             </div>
                                             <div class="col-12 mt-3">
-                                                <span class=""><span class="text-danger">*</span>输出规范</span>
+                                                <span class=""><span class="text-danger">*</span>输出格式</span>
                                             </div>
 
                                             <div class="col-12 mt-3">
@@ -144,38 +144,6 @@ z-index: 999999">
                                                         <a href="javascript:void(0)" @click="removeTestcase(index+1)"><i class="fa-lg fa fa-trash"></i></a>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row mt-3">
-                                            <div class="col-12">
-                                                <span class=""><span class="text-danger">*</span>难度</span>
-                                            </div>
-                                            <div class="col-6 mt-3">
-                                                <label class="custom-control custom-radio">
-                                                    <input name="rating" type="radio" value="1"
-                                                           class="custom-control-input" checked="checked">
-                                                    <span class="custom-control-indicator"></span>
-                                                    <span class="custom-control-description">简单</span>
-                                                </label>
-                                                <label class=" custom-control custom-radio">
-                                                    <input name="rating" type="radio" value="2"
-                                                           class="custom-control-input">
-                                                    <span class="custom-control-indicator"></span>
-                                                    <span class="custom-control-description">中等</span>
-                                                </label>
-                                                <label class=" custom-control custom-radio">
-                                                    <input name="rating" type="radio" value="3"
-                                                           class="custom-control-input">
-                                                    <span class="custom-control-indicator"></span>
-                                                    <span class="custom-control-description">困难</span>
-                                                </label>
-                                                <label class=" custom-control custom-radio">
-                                                    <input name="rating" type="radio" value="4"
-                                                           class="custom-control-input">
-                                                    <span class="custom-control-indicator"></span>
-                                                    <span class="custom-control-description">专家</span>
-                                                </label>
                                             </div>
                                         </div>
 

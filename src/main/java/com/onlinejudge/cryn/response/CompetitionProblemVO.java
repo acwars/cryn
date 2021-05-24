@@ -104,12 +104,11 @@ public class CompetitionProblemVO implements Serializable {
         this.updateTime = updateTime;
     }
 
-
-    public Integer getrating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setrating(Integer rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 }

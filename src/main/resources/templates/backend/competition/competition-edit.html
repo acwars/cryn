@@ -33,7 +33,7 @@
   top: 48%;
   background-position: center;
 z-index: 999999">
-        <img th:src="@{/img/loader.gif}" style=" width: 50px;" alt="loading...">
+        <img th:src="@{/img/loading.gif}" style=" width: 50px;" alt="loading...">
     </div>
 </div>
 <div id="wrap">
@@ -242,18 +242,7 @@ z-index: 999999">
                                                                         <td class="text-center">{{competitionProblem.score}}</td>
 
                                                                         <td class="text-center">
-                                                                            <span v-if="competitionProblem.rating == 1">
-                                                                                <span class=" btn-success btn-sm purple">简单</span>
-                                                                            </span>
-                                                                                                        <span v-if="competitionProblem.rating == 2">
-                                                                                <span class=" btn-primary btn-sm purple">中等</span>
-                                                                            </span>
-                                                                                                        <span v-if="competitionProblem.rating == 3">
-                                                                                <span class=" btn-warning btn-sm purple">困难</span>
-                                                                            </span>
-                                                                                                        <span v-if="competitionProblem.rating == 4">
-                                                                                <span class=" btn-danger btn-sm purple">专家</span>
-                                                                            </span>
+                                                                            <span class="btn-success btn-sm purple">{{problem.rating}}</span>
                                                                         </td>
                                                                         <td class="text-center">
                                                                             <button class="btn btn-primary mr-1 btn-sm" @click="updateProblem2Comp(competitionProblem.id,competitionProblem.problemId,competitionProblem.score)"  data-toggle="modal" data-href="#stack2" href="#stack2">编辑
@@ -333,18 +322,7 @@ z-index: 999999">
                                         <span v-if="problem.submitCount == 0">0.00%</span>
                                     </td>
                                     <td class="text-center">
-                                                <span v-if="problem.rating == 1">
-                                                    <span class=" btn-success btn-sm purple">简单</span>
-                                                </span>
-                                        <span v-if="problem.rating == 2">
-                                                    <span class=" btn-primary btn-sm purple">中等</span>
-                                                </span>
-                                        <span v-if="problem.rating == 3">
-                                                    <span class=" btn-warning btn-sm purple">困难</span>
-                                                </span>
-                                        <span v-if="problem.rating == 4">
-                                                    <span class=" btn-danger btn-sm purple">专家</span>
-                                                </span>
+                                        <span class=" btn-success btn-sm purple">{{problem.rating}}</span>
                                     </td>
                                     <td class="text-center">
                                         <span v-if="problem.flag == 0">公开</span>

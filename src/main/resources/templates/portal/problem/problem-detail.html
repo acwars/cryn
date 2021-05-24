@@ -27,7 +27,7 @@
   top: 48%;
   background-position: center;
 z-index: 999999">
-        <img src="img/loader.gif" style=" width: 50px;" alt="loading...">
+        <img src="img/loading.gif" style=" width: 50px;" alt="loading...">
     </div>
 </div>
 <div id="wrap">
@@ -89,38 +89,41 @@ z-index: 999999">
                                     </span>
                                     <span class=" btn-danger loading btn-sm ml-1">
                                         难度:
-                                        <span th:if="${problem.rating == 1}">简单</span>
-                                        <span th:if="${problem.rating == 2}">中等</span>
-                                        <span th:if="${problem.rating == 3}">困难</span>
-                                        <span th:if="${problem.rating == 4}">专家</span>
+                                        <span>[[${problem.rating}]]</span>
                                     </span>
                                 </div>
-                                <div class="mt-5">
-                                    <h3 class=" card-title "><strong>描述</strong></h3>
-                                    <div class="card-text markdown-body" style="white-space:pre-line"
-                                         th:utext="${problem.htmlContent}">
+                                <div class="rendered-markdown">
+                                    <div class="mt-5">
+                                        <h3 class=" card-title "><strong>描述</strong></h3>
+                                        <div class="card-text markdown-body" style="white-space:pre-line"
+                                             th:utext="${problem.htmlContent}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mt-5">
-                                    <h3 class=" card-title "><strong>输入规范</strong></h3>
-                                    <div class="card-text markdown-body">
-                                        [[${problem.inputDesc}]]
+                                    <div class="mt-5">
+                                        <h3 class=" card-title "><strong>输入格式</strong></h3>
+                                        <div class="card-text markdown-body">
+                                            [[${problem.inputDesc}]]
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mt-5">
-                                    <h3 class="card-title"><strong>输出规范</strong>
-                                    </h3>
-                                    <div class="card-text markdown-body">
-                                        [[${problem.outputDesc}]]
+                                    <div class="mt-5">
+                                        <h3 class="card-title"><strong>输出格式</strong>
+                                        </h3>
+                                        <div class="card-text markdown-body">
+                                            [[${problem.outputDesc}]]
+                                        </div>
                                     </div>
+                                    <h3 class="card-title mt-5"><strong>样例输入</strong></h3>
+                                    <pre class="pre_2GaNN">
+                                        <code><a href="javascript:void(0)" data-clipboard-target="#inputDesc" class="float-right clipboard" onclick="copyToClipboard()" id="clipboard">复制</a><div id="inputDesc">[[${problem.testcaseInput}]]</div></code>
+                                    </pre>
+                                    <!--style="white-space:pre-line"-->
+                                    <h3 class="card-title mt-5"><strong>样例输出</strong></h3>
+                                    <pre class="pre_2GaNN">
+                                        <code>
+                                            <a href="javascript:void(0)" data-clipboard-target="#outputDesc" class="float-right clipboard" onclick="copyToClipboard()" id="clipboard">复制</a><div id="outputDesc">[[${problem.testcaseOutput}]]</div>
+                                        </code>
+                                    </pre>
                                 </div>
-                                <h3 class="card-title mt-5"><strong>样例输入</strong></h3>
-                                <code style="white-space:pre-line"><a href="javascript:void(0)" data-clipboard-target="#inputDesc" class="float-right clipboard" onclick="copyToClipboard()" id="clipboard">复制</a><div id="inputDesc">[[${problem.testcaseInput}]]</div>
-                                </code>
-                                <!--style="white-space:pre-line"-->
-                                <h3 class="card-title mt-5"><strong>样例输出</strong></h3>
-                                <code style="white-space:pre-line">[[${problem.testcaseOutput}]]</code>
-
                                 <div class="mt-5">
                                     <div class="float-left">
                                         <i class="fa fa-tags mr-1"></i>标签：
@@ -141,7 +144,7 @@ z-index: 999999">
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fa fa-info-circle mr-1"></i>选择编程语言
                                         </button>
-                                        <span id="type" value="-1" hidden="hidden">sadasdasdasdasdas</span>
+                                        <span id="type" value="-1" hidden="hidden"></span>
                                         <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item " id="C" onclick="setCodeType('C')"
                                                href="javascript:void(0)">C</a>
@@ -195,12 +198,6 @@ z-index: 999999">
                                             </span>
                                             <!--<span class="float-right text-muted progress-danger">难度{{problem.rating}}</span>-->
                                         </div>
-                                    </div>
-                                    <div class="task-item">
-                                        <button @click="changeList()"
-                                                class=" w-100 btn btn-outline-primary glow_button glow_button"><i
-                                                class="fa fa-random mr-1"></i>更换一组
-                                        </button>
                                     </div>
                                 </div>
                             </div>

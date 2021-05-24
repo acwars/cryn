@@ -31,7 +31,7 @@ function saveProblem() {
 
     if (!inputDesc) {
         $.message({
-            message: "输入规范不能为空",
+            message: "输入格式不能为空",
             type: "warning"
         });
         return;
@@ -39,7 +39,7 @@ function saveProblem() {
 
     if (!outputDesc) {
         $.message({
-            message: "输出规范不能为空",
+            message: "输出格式不能为空",
             type: "warning"
         });
         return;
@@ -61,13 +61,6 @@ function saveProblem() {
         return;
     }
 
-    if (!rating) {
-        $.message({
-            message: "难度不能为空",
-            type: "warning"
-        });
-        return;
-    }
     if (!tagsItem) {
         $.message({
             message: "标签至少一个",

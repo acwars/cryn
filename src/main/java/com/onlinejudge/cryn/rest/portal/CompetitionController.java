@@ -151,7 +151,7 @@ public class CompetitionController {
         RestResponseVO response = registerService.isRegisterCompetition(userId, compId);
         if (!response.isSuccess() && !isClosed) {
             throw new CompetitionNotRegisterException(ExceptionStatusConst.COMPETITION_NOT_REGISTER_EXP,
-                    "你未报名该比赛");
+                    "未报名该比赛");
         }
 
         //set data
